@@ -31,7 +31,7 @@ Both Emacs and vim have built-in interactive tutorials that you can try.
 
 What terminal editor will you use? How did you make your decision?
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+I will use vim.  I have previous experience with vi in Unix, so vim commands are more familiar to me.  Also I prefer vim due to popularity across multiple platforms.
 
 ---
 
@@ -61,6 +61,6 @@ We will also use Jupyter (IPython) notebooks, but this does not remove the need 
 
 What graphical editor will you use? How did you make your decision? What are some interesting features of your editor? What are some useful keyboard shortcuts for your editor? How do you customize your editor?
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+I will be using Atom.  I used it for my coding challenge, and it seemed fairly intuitive and easy to use out of the box.  I am interested in exploring other graphical editors as well though.  I haven't done any real customization yet.  Thus far the only keyboard shortcuts I've used are the Edit shortcuts, which are consistent with the Mac keyboard shortcuts (i.e. Cmd-X, Cmd-C, Cmd-V, etc.).  The shortcuts for Selection and Packages in Atom seem like they will be useful for development and I look forward to exploring them.
 
 ---
