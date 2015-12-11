@@ -12,7 +12,7 @@ these in a couple of hours.
 
 Make a cheat sheet for yourself: a list of at least **ten** commands and what they do, focused on things that are new, interesting, or otherwise worth remembering.
 
-+ **man** - Everyone's trusted friend, the help file for a given command (although replaced in popularity by everyone's new BFF Google).  
+>> + **man** - Everyone's trusted friend, the help file for a given command (although replaced in popularity by everyone's new BFF Google).  
 + **pushd** and **popd** - allow you to manipulate the the directory stack.  **pushd** stores the name of the current directory for use by the **popd** command before changing the current directory to the specified directory.
 + **rmdir** - when going through the Crash Course tutorial I got an error deleting some diretories that were presumably empty.  Found out that OS X creates a hidden file (.DS_Store) to remember display options about that folder.  Need to check for hidden files (i.e. **ls -a**) before deleting a directory.  Alternatively use the options **-rf** with **rm** command to delete all fiels and folders contained in the specificed directory.
 + **mkdir** - pretty straightforward, it creates a specified directory.  The **-p** option will create an entire path even if the directories don't exist.
@@ -29,7 +29,7 @@ Make a cheat sheet for yourself: a list of at least **ten** commands and what th
 
 What does `ls` do? What do `ls -a`, `ls -l`, and `ls -lh` do? What combinations of those flags are meaningful?
 
-+ **'ls'** lists the contents of a directory.
+>> + **'ls'** lists the contents of a directory.
 + **'ls -a'** lists all the files in a directory, including hidden files.
 + **'ls -l'** lists the contents in long format, including the file type, permissions, number of hard links, owner, group, size, last-modified date and filename.
 + **'ls -lh'** adding the **h** option prints sizes of files and directories in human readable format (i.e. 1K, 200M, 3G, etc.).  
@@ -42,7 +42,7 @@ As a matter of preference, I've typically used the **-ltr** options.  The **t** 
 
 What does `xargs` do? Give an example of how to use it.
 
-**xargs** allows you to build and execute command lines from standard input, whereby most other commands only execute with specific arguments. 
+>> **xargs** allows you to build and execute command lines from standard input, whereby most other commands only execute with specific arguments. 
 + Example:  find . -name '*.py' | xargs grep 'import requests'  
 The above example returns the name of python files in the current directory that use the requests module.
 
