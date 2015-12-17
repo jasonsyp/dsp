@@ -23,17 +23,14 @@ How are Python lists and sets similar and different? Give examples of using both
 >> Like lists, sets are mutable.  Unlike lists, sets are unordered collections of elements with no duplicate values.  Sets are like dictionaries with the values thrown away, leaving just the keys.  Performance wise, if we assume "finding an element" refers to checking for membership, then the operation is much more efficient using sets.   Sets are implemented as hash tables, thereby the code to test for membership can be implemented much more efficiently using the 'in' operator versus having to iterate across all n indexes of a list, worst case.
 Reference: https://wiki.python.org/moin/PythonSpeed, "Membership testing with sets and dictionaries is much faster, O(1), than searching sequences, O(n).  When testing 'a in b', b should be a set or dictionary instead of a list or tuple."  See also, Time Complexity at https://wiki.python.org/moin/TimeComplexity
 
-'''python  
+    '''  
     my_list = ['Mets', 'Nationals', 'Braves', 'Phillies', 'Marlins']  
     for team in my_list:  
         print(team)  
-'''
-
-'''python  
+    '''
     my_set = {'Mets', 'Nationals', 'Braves', 'Phillies', 'Marlins'}  
     print ("There are", len(my_set), "teams in the NL East")  
-'''
-
+    '''
 ---
 
 ###Q3. Lambda Function
@@ -42,10 +39,10 @@ Describe Python's `lambda`. What is it, and what is it used for? Give at least o
 
 >> A lambda function is an anonymous function (i.e. doesn't have a name) expressed as a single statement.  It is useful in cases in which you would otherwise have to define many tiny functions and remember what you called them all.  
 
-'''python
+    '''  
     team_wins = [('Nationals', 83), ('Phillies', 63), ('Marlins', 71), ('Mets', 90), ('Braves', 67)]  
     sorted(team_wins, key=lambda team: team[1], reverse=True) # sort by number of wins  
-'''
+    '''
 
 ---
 
