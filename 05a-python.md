@@ -50,7 +50,20 @@ Describe Python's `lambda`. What is it, and what is it used for? Give at least o
 
 Explain list comprehensions. Give examples and show equivalents with `map` and `filter`. How do their capabilities compare? Also demonstrate set comprehensions and dictionary comprehensions.
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+>> In general, comprehensions are Python's way of implementing mathematical set notation.  They allow you to create data structures using less verbose syntax (i.e. more Pythonic) by combining loops and conditional tests in a single expression.  As such, list comprehensions are a more Pythonic way to construct a list.  In Python 3.x, map() and filter() return iterators instead of lists, suggesting that the use of list comprehensions is preferred.
+
+    '''
+    # map() example
+    cubes = list(map(lambda x: x*x*x, range(1, 11)))
+    # filter() example
+    even_cubes = list(filter(lambda x: x % 2 == 0, cubes))
+    # list comprehension example
+    even_cubes = [x*x*x for x in range(1, 11) if x % 2 == 0]
+    # set comprehension example
+    even_cubes_set = {x*x*x for x in range(1, 11) if x % 2 == 0}
+    #dictionary comprehension example
+    cubes_dict = {x: x*x*x for x in range(1, 11) if x % 2 == 0}
+    '''
 
 ---
 
