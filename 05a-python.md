@@ -12,7 +12,7 @@ For quick and easy interactive practice with Python, many people enjoy [Codecade
 
 How are Python lists and tuples similar and different? Which will work as keys in dictionaries? Why?
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+>> Both lists and tuples are sequence structures that contain zero or more elements, and the elements can be of different types.  However, lists are mutable, meaning you can insert and delete or overwrite existing elements.  Whereby, tuples are immutable, meaning that can't be modified after creation.  Tuples also take up less memory than lists.  A dictionary key can be any immutable type, therefore, tuples can be used as keys (if all the elements of the tuple are themselves immutable).  
 
 ---
 
@@ -20,15 +20,29 @@ How are Python lists and tuples similar and different? Which will work as keys i
 
 How are Python lists and sets similar and different? Give examples of using both. How does performance compare between lists and sets for finding an element. Why?
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+>> Like lists, sets are mutable.  Unlike lists, sets are unordered collections of elements with no duplicate values.  Sets are like dictionaries with the values thrown away, leaving just the keys.  Performance wise, if we assume "finding an element" refers to checking for membership, then the operation is much more efficient using sets.   Sets are implemented as hash tables, thereby the code to test for membership can be implemented much more efficiently using the 'in' operator versus having to iterate across all n indexes of a list, worst case.
+Reference: https://wiki.python.org/moin/PythonSpeed, "Membership testing with sets and dictionaries is much faster, O(1), than searching sequences, O(n).  When testing 'a in b', b should be a set or dictionary instead of a list or tuple."  See also, Time Complexity at https://wiki.python.org/moin/TimeComplexity
 
+    '''  
+    my_list = ['Mets', 'Nationals', 'Braves', 'Phillies', 'Marlins']  
+    for team in my_list:  
+        print(team)  
+    '''
+    my_set = {'Mets', 'Nationals', 'Braves', 'Phillies', 'Marlins'}  
+    print ("There are", len(my_set), "teams in the NL East")  
+    '''
 ---
 
 ###Q3. Lambda Function
 
 Describe Python's `lambda`. What is it, and what is it used for? Give at least one example, including an example of using a `lambda` in the `key` argument to `sorted`.
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+>> A lambda function is an anonymous function (i.e. doesn't have a name) expressed as a single statement.  It is useful in cases in which you would otherwise have to define many tiny functions and remember what you called them all.  
+
+    '''  
+    team_wins = [('Nationals', 83), ('Phillies', 63), ('Marlins', 71), ('Mets', 90), ('Braves', 67)]  
+    sorted(team_wins, key=lambda team: team[1], reverse=True) # sort by number of wins  
+    '''
 
 ---
 
@@ -36,7 +50,20 @@ Describe Python's `lambda`. What is it, and what is it used for? Give at least o
 
 Explain list comprehensions. Give examples and show equivalents with `map` and `filter`. How do their capabilities compare? Also demonstrate set comprehensions and dictionary comprehensions.
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+>> In general, comprehensions are Python's way of implementing mathematical set notation.  They allow you to create data structures using less verbose syntax (i.e. more Pythonic) by combining loops and conditional tests in a single expression.  As such, list comprehensions are a more Pythonic way to construct a list.  In Python 3.x, map() and filter() return iterators instead of lists, suggesting that the use of list comprehensions is preferred.
+
+    '''
+    # map() example
+    cubes = list(map(lambda x: x*x*x, range(1, 11)))
+    # filter() example
+    even_cubes = list(filter(lambda x: x % 2 == 0, cubes))
+    # list comprehension example
+    even_cubes = [x*x*x for x in range(1, 11) if x % 2 == 0]
+    # set comprehension example
+    even_cubes_set = {x*x*x for x in range(1, 11) if x % 2 == 0}
+    #dictionary comprehension example
+    cubes_dict = {x: x*x*x for x in range(1, 11) if x % 2 == 0}
+    '''
 
 ---
 
