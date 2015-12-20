@@ -18,7 +18,12 @@ def donuts(count):
     >>> donuts(99)
     'Number of donuts: many'
     """
-    raise NotImplementedError
+     if count < 10:
+         out_string = 'Number of donuts:  ' + str(count)
+         return(out_string)
+     else:
+         out_string = 'Number of donuts:  many'
+         return(out_string)
 
 
 def both_ends(s):
@@ -37,7 +42,13 @@ def both_ends(s):
     >>> both_ends('xyz')
     'xyyz'
     """
-    raise NotImplementedError
+
+    if len(s) < 2:
+        out_string = ''
+        return(out_string)
+    else:
+        out_string = s[0:2] + s[-2:]
+        return(out_string)
 
 
 def fix_start(s):
@@ -56,7 +67,11 @@ def fix_start(s):
     >>> fix_start('donut')
     'donut'
     """
-    raise NotImplementedError
+
+    first_letter = s[0]
+    changed_part = s[1:]
+    out_string = first_letter + changed_part.replace(first_letter, '*')
+    return(out_string)
 
 
 def mix_up(a, b):
@@ -74,7 +89,11 @@ def mix_up(a, b):
     >>> mix_up('pezzy', 'firm')
     'fizzy perm'
     """
-    raise NotImplementedError
+
+     new_a = a.replace(a[0:2], b[0:2])
+     new_b = b.replace(b[0:2], a[0:2])
+     out_string = new_a + ' ' + new_b
+     return(out_string)
 
 
 def verbing(s):
@@ -91,7 +110,16 @@ def verbing(s):
     >>> verbing('do')
     'do'
     """
-    raise NotImplementedError
+
+    if len(s) < 3:
+        return(s)
+    else:
+        if s[-3:] == 'ing':
+            out_string = s + 'ly'
+            return(out_string)
+        else:
+            out_string = s + 'ing'
+            return(out_string)
 
 
 def not_bad(s):
@@ -111,7 +139,14 @@ def not_bad(s):
     >>> not_bad("It's bad yet not")
     "It's bad yet not"
     """
-    raise NotImplementedError
+
+    pos_sub1 = s.find('not')
+    pos_sub2 = s.find('bad')
+    if pos_sub2 > pos_sub1:
+        out_string = s.replace(s[pos_sub1:], 'good')
+        return(out_string)
+    else:
+        return(s)
 
 
 def front_back(a, b):
@@ -130,4 +165,8 @@ def front_back(a, b):
     >>> front_back('Kitten', 'Donut')
     'KitDontenut'
     """
-    raise NotImplementedError
+    
+    half_a = (len(a) + 1)//2
+    half_b = (len(b) + 1)//2
+    out_string = a[:half_a] + b[:half_b] + a[half_a:] + b[half_b:]
+    return(out_string)
