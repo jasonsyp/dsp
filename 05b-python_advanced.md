@@ -74,7 +74,7 @@ faculty_dict = { 'Ellenberg': [\
 ```
 Print the first 3 key and value pairs of the dictionary:
 
->> REPLACE THIS WITH YOUR RESPONSE
+>> The question is misleading, there is no such thing as "first" since dictionaries are unordered.  An alternative would be to create an OrderedDict from the collections module.  Additionally, this dictionary only has two entries.
 
 ####Q7.  The previous dictionary does not have the best design for keys.  Create a new dictionary with keys as:
 
@@ -89,11 +89,11 @@ professor_dict = {('Susan', 'Ellenberg'): ['Ph.D.', 'Professor', 'sellenbe@upenn
 
 Print the first 3 key and value pairs of the dictionary:
 
->> REPLACE THIS WITH YOUR RESPONSE
+>> See answer above.  However, this dictionary does have more than 3 entries, therefore 3 key and value pairs can be printed, but the pairs returned can be different each time the command is executed given that dictionaries are unordered.
 
 ####Q8.  It looks like the current dictionary is printing by first name.  Sort by last name and print the first 3 key and value pairs.  
 
->> REPLACE THIS WITH YOUR RESPONSE
+>> See code.
 
 Place your code in this file: [advanced_python_dict.py](python/advanced_python_dict.py)
 
