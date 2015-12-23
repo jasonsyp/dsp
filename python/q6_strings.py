@@ -18,12 +18,12 @@ def donuts(count):
     >>> donuts(99)
     'Number of donuts: many'
     """
-     if count < 10:
-         out_string = 'Number of donuts:  ' + str(count)
-         return(out_string)
-     else:
-         out_string = 'Number of donuts:  many'
-         return(out_string)
+    if count < 10:
+        out_string = 'Number of donuts:  ' + str(count)
+        return(out_string)
+    else:
+        out_string = 'Number of donuts:  many'
+        return(out_string)
 
 
 def both_ends(s):
@@ -90,10 +90,10 @@ def mix_up(a, b):
     'fizzy perm'
     """
 
-     new_a = a.replace(a[0:2], b[0:2])
-     new_b = b.replace(b[0:2], a[0:2])
-     out_string = new_a + ' ' + new_b
-     return(out_string)
+    new_a = a.replace(a[0:2], b[0:2])
+    new_b = b.replace(b[0:2], a[0:2])
+    out_string = new_a + ' ' + new_b
+    return(out_string)
 
 
 def verbing(s):
@@ -165,7 +165,7 @@ def front_back(a, b):
     >>> front_back('Kitten', 'Donut')
     'KitDontenut'
     """
-    
+
     half_a = (len(a) + 1)//2
     half_b = (len(b) + 1)//2
     out_string = a[:half_a] + b[:half_b] + a[half_a:] + b[half_b:]
