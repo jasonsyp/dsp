@@ -51,11 +51,75 @@ Cohen's D is an example of effect size.  Other examples of effect size are:  cor
 
 You will see effect size again and again in results of algorithms that are run in data science.  For instance, in the bootcamp, when you run a regression analysis, you will recognize the t-statistic as an example of effect size.
 
+```python
+import nsfg
+import thinkstats2
+
+preg = nsfg.ReadFemPreg()
+live = preg[preg.outcome == 1]
+firsts = live[live.birthord == 1]
+others = live[live.birthord != 1]
+
+mean_live = live.totalwgt_lb.mean()
+mean_first = firsts.totalwgt_lb.mean()
+mean_others = others.totalwgt_lb.mean()
+
+print('Mean Live:', mean_live)
+print('Mean First:', mean_first)
+print('Mean Others', mean_others)
+
+print('Difference in lbs:', mean_first - mean_others)
+print('Difference in oz:', (mean_first - mean_others) * 16)
+
+d = thinkstats2.CohenEffectSize(firsts.totalwgt_lb, others.totalwgt_lb)
+print("Cohen's d:", d)
+```
+
 ###Q2. [Think Stats Chapter 3 Exercise 1](statistics/3-1-actual_biased.md) (actual vs. biased)
 This problem presents a robust example of actual vs biased data.  As a data scientist, it will be important to examine not only the data that is available, but also the data that may be missing but highly relevant.  You will see how the absence of this relevant data will bias a dataset, its distribution, and ultimately, its statistical interpretation.
 
+```python
+import nsfg
+import thinkstats2
+import thinkplot
+import chap01soln
+
+def BiasPmf(pmf, label):
+    new_pmf = pmf.Copy(label=label)
+    for x, p in pmf.Items():
+        new_pmf.Mult(x, x)
+
+    new_pmf.Normalize()
+    return new_pmf
+
+if __name__ == '__main__':
+    resp = chap01soln.ReadFemResp()
+    pmf = thinkstats2.Pmf(resp.numkdhh, label='actual')
+    biased = BiasPmf(pmf, label='biased')
+
+    thinkplot.PrePlot(2)
+    thinkplot.Pmfs([pmf, biased])
+    thinkplot.Show()
+```
+
 ###Q3. [Think Stats Chapter 4 Exercise 2](statistics/4-2-random_dist.md) (random distribution)  
 This questions asks you to examine the function that produces random numbers.  Is it really random?  A good way to test that is to examine the pmf and cdf of the list of random numbers and visualize the distribution.  If you're not sure what pmf is, read more about it in Chapter 3.  
+
+```python
+import random
+import thinkstats2
+import thinkplot
+
+nums = [random.random() for _ in range(1000)]
+
+my_pmf = thinkstats2.Pmf(nums)
+thinkplot.Pmf(my_pmf, linewidth=0.1)
+thinkplot.Show()
+
+my_cdf = thinkstats2.Cdf(nums)
+thinkplot.Cdf(my_cdf)
+thinkplot.Show()
+```
 
 ###Q4. [Think Stats Chapter 5 Exercise 1](statistics/5-1-blue_men.md) (normal distribution of blue men)
 This is a classic example of hypothesis testing using the normal distribution.  The effect size used here is the Z-statistic. 
