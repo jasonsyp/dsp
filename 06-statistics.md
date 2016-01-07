@@ -187,6 +187,44 @@ thinkplot.Show()
 ###Q6. [Think Stats Chapter 8 Exercise 2](statistics/8-2-sampling_dist.md) (sampling distribution)
 In the theoretical world, all data related to an experiment or a scientific problem would be available.  In the real world, some subset of that data is available.  This exercise asks you to take samples from an exponential distribution and examine how the standard error and confidence intervals vary with the sample size.
 
+>> As the sample size increases, the RMSE approachs O, and the confidence interval decreases, meaning L is an unbiased estimator of lambda.
+
+```python
+import thinkstats2
+import thinkplot
+import math
+import random
+import numpy as np
+from scipy import stats
+from estimation import RMSE, MeanError
+
+thinkstats2.RandomSeed(10)
+
+lam=2
+n=10
+m=1000
+
+while n <= 1000:
+    means = []
+    for i in range(m):
+            xs = np.random.exponential(1.0/lam, n)
+            L = 1.0 / np.mean(xs)
+            means.append(L)
+    cdf = thinkstats2.Cdf(means)
+    ci5 = cdf.Percentile(5)
+    ci95 = cdf.Percentile(95)
+    print(n,  'RMSE:', RMSE(means, lam), 'confidence interval:', ci5, 'to', ci95)
+
+    thinkplot.Plot([ci5, ci5], [0, 1], color='0.8', linewidth=3)
+    thinkplot.Plot([ci95, ci95], [0, 1], color='0.8', linewidth=3)
+    thinkplot.Cdf(cdf)
+    thinkplot.Config(xlabel='estimate',
+                    ylabel='CDF',
+                    title='Sampling distribution')
+    thinkplot.Show()
+    n = n * 10
+```
+
 ###Q7. Bayesian (Elvis Presley twin) 
 
 Bayes' Theorem is an important tool in understanding what we really know, given evidence of other information we have, in a quantitative way.  It helps incorporate conditional probabilities into our conclusions.
