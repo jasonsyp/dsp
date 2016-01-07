@@ -126,8 +126,63 @@ This is a classic example of hypothesis testing using the normal distribution.  
 
 As a bonus (optional) step, write out the null hypothesis, alternative hypothesis, critical value for testing, and the associated p-value.  You will see p-values in virtually every algorithm output during the bootcamp.  And from this exercise, you will know how the p-value has been computed and its relationship to a distribution.
 
+```python
+import thinkstats2
+import scipy.stats
+
+mu = 178
+sigma = 7.7
+dist = scipy.stats.norm(loc=mu, scale=sigma)
+
+# subtract the cdf of the bottom of the range from the cdf of the top to get the % in the acceptable range
+bottom = dist.cdf(177.8)    # 5'10"
+top = dist.cdf(185.4)   # 6'1"
+print(int()(top - bottom)*100), '% of US males are in the Blue Man Group eligible range')
+```
+
 ###Q5. [Think Stats Chapter 7 Exercise 1](statistics/7-1-weight_vs_age.md) (correlation of weight vs. age)
 In this exercise, you will compute the effect size of correlation.  Correlation measures the relationship of two variables, and data science is about exploring relationships in data.    
+
+>>  The correlation between these two variables is weak.  It is difficult to ascertain a relationship from the scatterplot, and there are many outliers.   The percentiles suggest a relationship between ages 15 to 25, but after that it weakens and varies.  The low (near zero) correlation coefficients suggest a weak relationship as well.  Pearson's is lower than Spearman's which can be effected by the numerous amount of outliers.
+
+```python
+import numpy as np
+import nsfg
+import first
+import thinkplot
+import thinkstats2
+import scatter
+
+preg = nsfg.ReadFemPreg()
+live = preg.dropna(subset=['agepreg', 'totalwgt_lb'])
+ages = live.agepreg
+weights = live.totalwgt_lb
+
+print("Pearson's correlation:", thinkstats2.Corr(ages, weights))
+print("Spearman's correlation:", thinkstats2.SpearmanCorr(ages, weights))
+
+thinkplot.Scatter(ages, weights, alpha=2.0)
+thinkplot.Show(xlabel='age (years)', ylabel='weight (lbs)',
+                 xlim=[10, 50],
+                 ylim=[0, 15],
+                 legend=False)
+
+bins = np.arange(16, 42, 4)
+indices = np.digitize(preg.agepreg, bins)
+groups = preg.groupby(indices)
+
+ages = [group.agepreg.mean() for i, group in groups]
+cdfs = [thinkstats2.Cdf(group.totalwgt_lb) for i, group in groups]
+
+thinkplot.PrePlot(3)
+for percent in [75, 50, 25]:
+    weights = [cdf.Percentile(percent) for cdf in cdfs]
+    label = '%dth' % percent
+    thinkplot.Plot(ages, weights, label=label)
+thinkplot.Config(xlabel="mother's age (years)",
+                ylabel='birth weight (lbs)')
+thinkplot.Show()
+```
 
 ###Q6. [Think Stats Chapter 8 Exercise 2](statistics/8-2-sampling_dist.md) (sampling distribution)
 In the theoretical world, all data related to an experiment or a scientific problem would be available.  In the real world, some subset of that data is available.  This exercise asks you to take samples from an exponential distribution and examine how the standard error and confidence intervals vary with the sample size.
